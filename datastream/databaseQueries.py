@@ -26,7 +26,7 @@ async def close_db_pool():
         pool = None
         
 # insert an entire dataframe
-async def insert_df_to_db(df, crypto:bool):
+async def insert_df_to_db(df:pandas.DataFrame, crypto:bool):
     query = None
     if crypto:
         query = """
@@ -54,7 +54,6 @@ async def insert_df_to_db(df, crypto:bool):
         await conn.execute(query, ts, symbol, o, h, l, c, v)
     
 # Insert a single bar asynchronously
-# 
 async def insert_bar_asyncpg(bar, crypto:bool):
     # parse bar
     ts = bar.timestamp
@@ -110,7 +109,6 @@ async def on_crypto_bar(bar):
         bar_buffer = []
 
 # Insert all bars from the buffer into their appropriate table
-#
 async def flush_bars(bars, crypto:bool):
     query = ""
     if crypto:        

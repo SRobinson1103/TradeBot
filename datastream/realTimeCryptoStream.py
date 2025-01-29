@@ -7,11 +7,10 @@ import threading
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from alpaca.data.live import CryptoDataStream
-from databaseQueries import on_crypto_bar, init_db_pool, close_db_pool, flush_buffers
-from config import API_KEY, SECRET_KEY, ALPACA_PAPER_ENDPOINT, CRYPTO_SYMBOLS_FILE
+from .databaseQueries import on_crypto_bar, init_db_pool, close_db_pool, flush_buffers
+from config import API_KEY, SECRET_KEY, CRYPTO_SYMBOLS_FILE
 
 crypto_symbols = None
-
 with open(CRYPTO_SYMBOLS_FILE) as f:
     crypto_symbols = [line.strip() for line in f]
     
@@ -23,7 +22,7 @@ def run_crypto_stream():
     crypto_stream.run()
 
 # coroutine
-async def main():
+async def start():
     await init_db_pool()
 
     stock_thread = threading.Thread(target=run_crypto_stream, daemon=True)
@@ -42,6 +41,6 @@ async def main():
         await close_db_pool()
         print("Stream stopped, thread joined, DB closed.")
 
-if __name__ == "__main__":
-    asyncio.run(main())
+#if __name__ == "__main__":
+#    asyncio.run(start())
     

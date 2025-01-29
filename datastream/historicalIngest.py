@@ -2,16 +2,17 @@ import asyncio
 import sys
 import os
 import datetime as dt
-import pandas
 
 # Add project root to sys.path, if needed
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from alpaca.data import CryptoHistoricalDataClient, StockHistoricalDataClient
 from alpaca.data.requests import CryptoBarsRequest, StockBarsRequest, TimeFrame
-
-from config import API_KEY, SECRET_KEY, ALPACA_PAPER_ENDPOINT, STOCK_SYMBOLS_FILE, CRYPTO_SYMBOLS_FILE
+from config import API_KEY, SECRET_KEY, STOCK_SYMBOLS_FILE, CRYPTO_SYMBOLS_FILE
 import databaseQueries as dbq
+
+mins_in_day = 60 * 24
+mins_in_week = mins_in_day * 14
 
 crypto_symbols = None
 stock_symbols = None

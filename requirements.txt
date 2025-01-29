@@ -1,0 +1,9 @@
+ccxt
+pandas
+numpy
+backtrader
+python-binance
+yfinance
+
+alpaca-py
+psycopg2-binary

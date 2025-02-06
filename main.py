@@ -22,8 +22,8 @@ async def start():
     
     try:
         while True:
-            print("waiting")
-            await asyncio.sleep(1)
+            #print("waiting")
+            await asyncio.sleep(10)
     except (KeyboardInterrupt, asyncio.CancelledError):
          print("KeyboardInterrupt received. Shutting down...")
     finally:

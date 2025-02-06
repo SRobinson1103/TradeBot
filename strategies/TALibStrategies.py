@@ -148,4 +148,3 @@ class ParabolicSARStrategy(BaseStrategy):
             return "BUY"
         else:
             return "SELL"  # or "HOLD"
-
